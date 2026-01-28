@@ -1,0 +1,21 @@
+{
+  "name": "api-movieticket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohan4787/api-movieticket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mohan4787/api-movieticket/issues"
+  },
+  "homepage": "https://github.com/mohan4787/api-movieticket#readme",
+  "description": ""
+}
