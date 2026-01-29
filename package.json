@@ -17,5 +17,8 @@
     "url": "https://github.com/mohan4787/api-movieticket/issues"
   },
   "homepage": "https://github.com/mohan4787/api-movieticket#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }

@@ -1,7 +1,8 @@
 
 const http = require("http")
+const app = require("./src/config/express.config")
 
-const server = http.createServer()
+const server = http.createServer(app)
 
 const PORT = 8005
 const HOST = "127.0.0.1"
