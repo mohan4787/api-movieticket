@@ -42,10 +42,11 @@ class EmailService {
         if(attachments){
             msgBody['attachments'] = attachments;
         }
+        console.log("Email sending");
+        
         let response = await this.#transport.sendMail(msgBody)
         return response;
     } catch (exception) {
-        console.log(exception);
         throw {
             message: "Email sending failed",
             status: "EMAIL_SENDING_ERROR"
