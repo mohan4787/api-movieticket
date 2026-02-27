@@ -5,12 +5,13 @@ class AuthController {
   registerUser = async (req, res, next) => {
     try {
       const data = await  authSvc.transformUserCreate(req);
+      let user = await authSvc.createUser(data);
 
-      await authSvc.sendActivationNotification(data);
+      await authSvc.sendActivationNotification(user);
 
         res.json({
-        data: data,
-        message: "Register success",
+        data: user,
+        message: "User registration successful. Please check your email to activate your account.",
         status: "Success",
         options: null,
       });

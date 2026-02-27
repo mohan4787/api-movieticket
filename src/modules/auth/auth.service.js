@@ -4,6 +4,7 @@ const { Status } = require("../../config/constants");
 const { randomStringGenerator } = require("../../utilities/helper");
 const { AppConfig } = require("../../config/config");
 const emailSvc = require("../../services/email.service");
+const UserModel = require("../user/user.model");
 
 class AuthService {
   async transformUserCreate(req) {
@@ -17,12 +18,20 @@ class AuthService {
       data.activationToken = randomStringGenerator(100);
       const {confirmPassword, ...mappedData} = data;
       return mappedData;
-
-    
     } catch (exception) {
       throw exception;
     }
   }
+
+  async createUser(data) {
+    try {
+      const user = new UserModel(data)
+      return await user.save()
+    } catch (exception) {
+      throw exception
+    }
+  }
+
   async sendActivationNotification(user) {
     try {
       await emailSvc.sendEmail({

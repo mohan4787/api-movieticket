@@ -9,7 +9,7 @@ const AppConfig = {
 
 const SMTPConfig = {
     provider: process.env.SMTP_PROVIDER,
-    host: process.env.SMTP_HOST,
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: process.env.STMP_PORT,
     user: process.env.SMTP_USER,
     password: process.env.SMTP_PASSWORD,

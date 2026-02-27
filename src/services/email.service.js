@@ -42,8 +42,6 @@ class EmailService {
         if(attachments){
             msgBody['attachments'] = attachments;
         }
-        console.log("Email sending");
-        
         let response = await this.#transport.sendMail(msgBody)
         return response;
     } catch (exception) {
