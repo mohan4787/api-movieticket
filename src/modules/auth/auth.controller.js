@@ -187,6 +187,7 @@ class AuthController {
         maskedAccessToken: maskedAccessToken,
         maskedRefreshToken: maskedRefreshToken
       }
+      console.log(authData);
       await authSvc.updateSingleRowByFilter({
         _id: authToken._id
       }, authData);
