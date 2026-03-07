@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const EmailDTO = Joi.string().email().required()
-const PasswordDTO = Joi.string().min(8).max(25).required()
+const EmailDTO = Joi.string().email().required();
+const PasswordDTO = Joi.string().min(8).max(25).required();
 
 const RegisterDTO = Joi.object({
     name: Joi.string().min(2).max(50).required(),

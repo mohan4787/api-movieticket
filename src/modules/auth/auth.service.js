@@ -136,9 +136,30 @@ class AuthService {
       return await emailSvc.sendEmail({
         to: userData.email,
         sub: "Password reset request",
-        msg: `Please click the link below to reset your password <br>
-        <a href="${AppConfig.frontendUrl}/reset-password?token=${userData.forgetPasswordToken}">${AppConfig.frontendUrl}/reset-password?token=${userData.forgetPasswordToken}</a>
-       The link will expire in 3 hour. If you did not request for password reset, please ignore this email.`,
+        msg: `Dear ${userData.name},
+        <html>
+          <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px;">🔐 Password Reset Request</h1>
+          </div>
+          <div style="padding: 40px 20px;">
+            <p style="color: #333333; font-size: 16px; line-height: 1.6; margin-top: 0;">We received a request to reset your password. Click the button below to proceed:</p>
+            <div style="margin: 30px 0; text-align: center;">
+          <a href="${AppConfig.frontendUrl}/reset-password?token=${userData.forgetPasswordToken}" style="background-color: #667eea; color: #ffffff; padding: 14px 40px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; font-size: 16px;">Reset Password</a>
+            </div>
+            <hr style="border: none; border-top: 1px solid #eeeeee; margin: 30px 0;">
+            <p style="color: #666666; font-size: 14px; line-height: 1.6;">If the button doesn't work, copy and paste this link in your browser:</p>
+            <p style="background-color: #f9f9f9; padding: 12px; border-left: 4px solid #667eea; word-break: break-all; color: #667eea; font-size: 13px; margin: 15px 0;">${AppConfig.frontendUrl}/reset-password?token=${userData.forgetPasswordToken}</p>
+            <p style="color: #ff6b6b; font-size: 14px; font-weight: bold; margin: 20px 0;">⏰ This link expires in 3 hours</p>
+            <p style="color: #666666; font-size: 14px; line-height: 1.6;">If you did not request a password reset, please ignore this email. Your account remains secure.</p>
+          </div>
+          <div style="background-color: #f9f9f9; padding: 20px; text-align: center; font-size: 12px; color: #999999;">
+            <p style="margin: 0;">Please do not reply to this email. Contact support if you have any questions.<br>© 2024 MovieTicket. All rights reserved.</p>
+          </div>
+        </div>
+          </body>
+        </html>`,
       })
     } catch (exception) {
       throw exception

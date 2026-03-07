@@ -1,4 +1,3 @@
-
 const { AppConfig } = require("../../config/config");
 const { Status } = require("../../config/constants");
 const { randomStringGenerator } = require("../../utilities/helper");
@@ -30,7 +29,6 @@ class AuthController {
     try {
       const token = req.params.token
       // console.log(token);
-      
       const userDetail = await userSvc.getSingleUserByFilter({
         activationToken: token
       })
@@ -187,7 +185,7 @@ class AuthController {
         maskedAccessToken: maskedAccessToken,
         maskedRefreshToken: maskedRefreshToken
       }
-      console.log(authData);
+     // console.log(authData);
       await authSvc.updateSingleRowByFilter({
         _id: authToken._id
       }, authData);
@@ -212,9 +210,10 @@ class AuthController {
       }
     }
   };
-  forgetPasswordRequest = async (req, res, next) => {
+  forgetPasswordRequest = async (req, res) => {
    try {
-    const {email} = req.body;
+    const data = req.body;
+    const email = data.email;
     const userDetail = await userSvc.getSingleUserByFilter({
       email: email
     })
@@ -237,14 +236,14 @@ class AuthController {
     }, forgetData)
     await authSvc.sendPasswordResetRequestEmail(updatedUser)
     res.json({
-      dtat: null,
+      data: null,
       message: "Password reset request email sent successfully. Please check your email.",
       status: "PASSWORD_RESET_REQUEST_SUCCESS",
       options: null 
     })
 
    } catch (exception) {
-    next(exception);
+   throw exception;
    }
   };
   forgetPasswordTokenVerify = async (req, res, next) => {
