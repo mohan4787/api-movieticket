@@ -1,4 +1,3 @@
-const { default: slugify } = require("slugify");
 const cloudinarySvc = require("../../services/cloudinary.service");
 const BannerModel = require("./banner.model");
 const BaseService = require("../../services/base.service");
@@ -9,13 +8,9 @@ class bannerService extends BaseService{
             const data = req.body;
             data.createdBy = req.loggedInUser._id;
             if(req.file) {
-                data.logo = await cloudinarySvc.fileUpload(req.file.path, "/banner/");
+                data.image = await cloudinarySvc.fileUpload(req.file.path, "/banner/");
             }
-            data.slug = slugify(data.title.replace("'","").replace('"',""),{
-                lower: true,
-            })
             return data;
-
         } catch (exception) {
             throw exception
         }
@@ -25,13 +20,11 @@ class bannerService extends BaseService{
             const data = req.body;
             data.updatedBy = req.loggedInUser._id;
             if(req.file) {
-                data.logo = await cloudinarySvc.fileUpload(req.file.path, "/banner/");
+                data.image = await cloudinarySvc.fileUpload(req.file.path, "/banner/");
             } else {
-                data.logo = oldData.logo
-            }
-            
+                data.image = banner.image
+            } 
             return data;
-
         } catch (exception) {
             throw exception
         }
@@ -42,16 +35,7 @@ class bannerService extends BaseService{
             _id: row._id,
             title: row.title,
             status: row.status,
-            slug: row.slug,
-            logo: row.logo.optimizedUrl,
-            createdBy: {
-                _id: row.createdBy._id,
-                title: row.createdBy.title,
-                email: row.createdBy.email,
-                role: row.createdBy.role,
-                status: row.createdBy.status,
-                image: row.createdBy.image.optimizedUrl
-            }
+            image: row.image.optimizedUrl || null
         }
     }
     async listAllRowsByFilter(query, filter={}) {

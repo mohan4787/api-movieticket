@@ -1,19 +1,20 @@
-const mongoose = require("mongoose")
-const { Status } = require("../../config/constants")
+const mongoose = require("mongoose");
+const { Status } = require("../../config/constants");
 
 const BannerSchema = new mongoose.Schema({
- title: {
+  title: {
     type: String,
     min: 2,
     max: 100,
-    unique: true
-  }, 
-  slug: {
-    type: String,
-    unique: true
+    unique: true,   
+    required: true
   },
-  logo: {
-     publicId: String,
+  link: {
+    type: String,
+    default: null
+  },
+  image: {
+    publicId: String,
     secureUrl: String,
     optimizedUrl: String,
   },
@@ -32,14 +33,12 @@ const BannerSchema = new mongoose.Schema({
     ref: "User",
     default: null
   }
- },{
-    autoIndex: true,
-    autoCreate: true,
-    timestamps: true
- }
-) 
+}, {
+  autoIndex: true,
+  autoCreate: true,
+  timestamps: true
+});
 
-const BannerModel = mongoose.model("Banner", BannerSchema)
+const BannerModel = mongoose.model("Banner", BannerSchema);
 
 module.exports = BannerModel;
-

@@ -10,11 +10,11 @@ const bannerRouter = require("express").Router()
 
 
 bannerRouter.route("/")
-  .post(auth([USER_ROLES.ADMIN]), uploader().single("logo"), bodyValidator(BannerCreateDTO), bannerCtrl.createBanner)
+  .post(auth([USER_ROLES.ADMIN]), uploader().single("image"), bodyValidator(BannerCreateDTO), bannerCtrl.createBanner)
   .get(bannerCtrl.listAllBanners)
 
 bannerRouter.route("/:bannerId")
   .get(bannerCtrl.getBannerDetailsById) 
-  .put(auth([USER_ROLES.ADMIN]), uploader().single("logo"), bodyValidator(BannerUpdateDTO), bannerCtrl.updateBannerById) 
+  .put(auth([USER_ROLES.ADMIN]), uploader().single("image"), bodyValidator(BannerUpdateDTO), bannerCtrl.updateBannerById) 
   .delete(auth([USER_ROLES.ADMIN]), bannerCtrl.deleteBannerById)
 module.exports = bannerRouter;

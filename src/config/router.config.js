@@ -1,5 +1,6 @@
 const authRouter = require("../modules/auth/auth.router")
 const bannerRouter = require("../modules/banner/banner.router")
+const movieRouter = require("../modules/movie/movie.router")
 
 const router = require("express").Router()
 
@@ -8,12 +9,13 @@ router.get("/", (req,res, next) => {
     res.json({
         data: null,
         message: "Health ok",
-        status: "Sucess",
+        status: "Success",
         options: null
     })
 })
 
 router.use("/auth",authRouter)
 router.use("/banner",bannerRouter)
+router.use("/movie", movieRouter)
 
 module.exports = router

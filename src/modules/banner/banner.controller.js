@@ -45,9 +45,10 @@ class BannerController {
       next(exception);
     }
   }
+
   async #getBannerDetail(bannerId) {
     this.#bannerDetail = await bannerSvc.getSingleRowByFilter({
-      _id: req.params.bannerId,
+      _id:bannerId,
     });
     if (!this.#bannerDetail) {
       throw {
@@ -57,6 +58,7 @@ class BannerController {
       };
     }
   }
+ 
   async getBannerDetailsById(req, res, next) {
     try {
       await this.#getBannerDetail(req.params.bannerId);
