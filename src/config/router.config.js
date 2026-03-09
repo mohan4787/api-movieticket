@@ -1,6 +1,9 @@
 const authRouter = require("../modules/auth/auth.router")
 const bannerRouter = require("../modules/banner/banner.router")
 const movieRouter = require("../modules/movie/movie.router")
+const showtimeRouter = require("../modules/showtime/showtime.router")
+const upcomingMovieRouter = require("../modules/upcomingmovie/upcomingmovie.router")
+
 
 const router = require("express").Router()
 
@@ -17,5 +20,7 @@ router.get("/", (req,res, next) => {
 router.use("/auth",authRouter)
 router.use("/banner",bannerRouter)
 router.use("/movie", movieRouter)
+router.use("/showtime",showtimeRouter)
+router.use("/upcomingmovie",upcomingMovieRouter)
 
 module.exports = router
